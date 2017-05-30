@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+        <variable name="viewModel" type="com.example.administrator.policemap.LoginViewModel"/>
+        <variable name="uiViewModel" type="com.example.administrator.policemap.LoginActivity.LoginUIViewModel"/>
+        <import type="android.view.View"/>
+    </data>
+
+    <RelativeLayout
+        style="@style/linearLayout_match_match_vertical">
+
+        <LinearLayout
+            android:visibility="@{viewModel.isShowProgressBar?View.GONE:View.VISIBLE}"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:background="@color/white">
+
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <ImageView
+                    android:padding="15dp"
+                    android:src="@mipmap/ic_launcher"
+                    android:layout_width="match_parent"
+                    android:layout_height="150dp"/>
+
+                <LinearLayout
+                    style="@style/linearLayout_match_match_vertical"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="20dp">
+
+                    <LinearLayout
+                        style="@style/linearLayout_match_wrap_horizontal"
+                        android:layout_marginTop="15dp"
+                        android:background="@color/white"
+                        android:gravity="center_vertical">
+
+                        <ImageView
+                            android:padding="5dp"
+                            android:src="@drawable/username_icon"
+                            android:layout_height="40dp"
+                            android:layout_width="40dp"
+                            android:gravity="center"/>
+
+                        <EditText
+                            android:onTextChanged="@{uiViewModel.username}"
+                            android:textColorHint="@color/gray"
+                            android:textSize="15dp"
+                            android:id="@+id/edit_login_username"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:text="@{viewModel.usernameObservable}"
+                            android:inputType="number"
+                            android:hint="手机号"
+                            android:padding="10dp"/>
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        style="@style/linearLayout_match_wrap_horizontal"
+                        android:background="@color/white"
+                        android:gravity="center_vertical">
+
+                        <ImageView
+                            android:padding="5dp"
+                            android:src="@drawable/password_icon"
+                            android:layout_height="40dp"
+                            android:layout_width="40dp"
+                            android:gravity="center"/>
+
+                        <EditText
+                            android:onTextChanged="@{uiViewModel.password}"
+                            android:textColorHint="@color/gray"
+                            android:textSize="15dp"
+                            android:id="@+id/edit_login_code"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:inputType="textPassword"
+                            android:hint="密码"
+                            android:text="@{viewModel.passwordObservable}"
+                            android:padding="10dp"
+                            android:password="true"/>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:orientation="horizontal"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <CheckBox
+                            android:onCheckedChanged="@{uiViewModel.rememberPassword}"
+                            android:checked="@{viewModel.isRememberPassword}"
+                            android:text="记住密码"
+                            android:textSize="15dp"
+                            android:layout_width="100dp"
+                            android:layout_height="match_parent"/>
+
+                        <CheckBox
+                            android:onCheckedChanged="@{uiViewModel.autoLogin}"
+                            android:checked="@{viewModel.isAutoLogin}"
+                            android:text="自动登陆"
+                            android:textSize="15dp"
+                            android:layout_width="100dp"
+                            android:layout_height="match_parent"/>
+
+                    </LinearLayout>
+
+                    <Button
+                        android:layout_marginTop="20dp"
+                        android:background="@color/colorAccent"
+                        android:text="登录"
+                        android:gravity="center"
+                        android:textColor="@color/white"
+                        android:textSize="20dp"
+                        android:onClick="@{uiViewModel.loginClick}"
+                        android:layout_width="match_parent"
+                        android:layout_height="40dp"/>
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <ProgressBar
+            android:visibility="@{viewModel.isShowProgressBar?View.VISIBLE:View.GONE}"
+            android:layout_centerInParent="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+    </RelativeLayout>
+
+</layout>
+
